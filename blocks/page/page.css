@@ -1,0 +1,6 @@
+.page {
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+}
