@@ -5,4 +5,14 @@
   width: 22px;
   height: 19px;
   flex-shrink: 0;
+  cursor: pointer;
+}
+
+.card__like:hover {
+  opacity: 0.5;
+  transition: .3s;
+}
+
+.card__like:active {
+  background-image: url(../../../images/cards/like-active.svg);
 }
