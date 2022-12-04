@@ -5,10 +5,12 @@
   background-image: url(../../../images/buttons/edit-button.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0);
   border: 1px solid #fff;
   cursor: pointer;
   padding: 0;
+  grid-area: button;
+  align-self: center;
 }
 
 .profile__edit-button:hover {

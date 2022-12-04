@@ -1,9 +1,22 @@
 .profile__info {
   flex-grow: 1;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-template-rows: max-content;
+  grid-template-areas: 
+  "title button"
+  "subtitle .";
+  gap: 16px 18px;
 }
 
 @media screen and (max-width: 770px) {
   .profile__info {
     margin-bottom: 36px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .profile__info {
+    gap: 14px 10px;
   }
 }

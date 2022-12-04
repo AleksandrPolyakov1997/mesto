@@ -6,9 +6,10 @@
   font-size: 18px;
   line-height: 22px;
   text-align: center;
-  margin-top: 48px;
+  margin-top: 18px;
   border: none;
   cursor: pointer;
+  border-radius: 2px;
 }
 
 .popup__button-save:hover {
