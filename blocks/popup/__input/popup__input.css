@@ -1,9 +1,12 @@
 .popup__input {
   border: none;
   width: 100%;
+  max-height: 28px;
+  box-sizing: border-box;
+  padding: 0;
   padding-bottom: 13px;
   border-bottom: 1px solid rgba(0,0,0,0.2);
-  margin-bottom: 30px;
+  margin-bottom: 27px;
   color: #000;
   cursor: pointer;
   outline: none;
