@@ -8,6 +8,7 @@
   border: none;
   background-image: url(../../../images/buttons/remove-button.svg);
   cursor: pointer;
+  z-index: 2;
 }
 
 .card__remove-button:hover {
