@@ -21,25 +21,33 @@ const formProfileElement = document.querySelector('.popup__form_profile');
 const nameInput = formProfileElement.querySelector('.popup__input_form_name');
 const jobInput = formProfileElement.querySelector('.popup__input_form_job');
 
+const openPopup = function (popup) {
+  popup.classList.add('popup_open');
+}
+
+const closePopup = function (popup) {
+  popup.classList.remove('popup_open');
+}
+
 editPopupOpen.addEventListener('click', () => {
-  editPopup.classList.add('popup_open');
+  openPopup(editPopup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 });
 
-addPopupOpen.addEventListener('click', () => addPopup.classList.add('popup_open'));
+addPopupOpen.addEventListener('click', () => openPopup(addPopup));
 
-editPopupClose.addEventListener('click', () => editPopup.classList.remove('popup_open'));
+editPopupClose.addEventListener('click', () => closePopup(editPopup));
 
-addPopupClose.addEventListener('click', () => addPopup.classList.remove('popup_open'));
+addPopupClose.addEventListener('click', () => closePopup(addPopup));
 
-bigImagePopupClose.addEventListener('click', () => bigImagePopup.classList.remove('popup_open'));
+bigImagePopupClose.addEventListener('click', () => closePopup(bigImagePopup));
 
 function handleFormProfileSubmit (evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    togglePopup(editPopup);
+    closePopup(editPopup);
 }
 
 formProfileElement.addEventListener('submit', handleFormProfileSubmit);
@@ -91,6 +99,7 @@ function createCard (card) {
 
   cardImage.addEventListener('click', () => {
     bigImage.src = card.link;
+    bigImage.alt = card.name;
     imageCaption.textContent = card.name;
     bigImagePopup.classList.add('popup_open');
   })
@@ -103,7 +112,7 @@ const handleSubmitAddCardForm = (event) => {
   renderCard({ name: titleInput.value, link: imageInput.value })
   titleInput.value = '';
   imageInput.value = '';
-  togglePopup(addPopup);
+  closePopup(addPopup);
 };
 
 const renderCard = (card) => {
