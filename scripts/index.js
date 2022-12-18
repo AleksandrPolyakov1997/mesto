@@ -23,6 +23,13 @@ const jobInput = formProfileElement.querySelector('.popup__input_form_job');
 
 const openPopup = function (popup) {
   popup.classList.add('popup_open');
+  keyUpHandler = (e) => handleKeyUp(e, popup);
+  document.addEventListener('keyup', keyUpHandler);
+  popup.addEventListener('click', (e) => {
+    if(!e.target.closest('.popup__content')п) {
+      closePopup(e.target.closest('.popup'));
+  }
+  })
 }
 
 const closePopup = function (popup) {
@@ -34,6 +41,12 @@ editPopupOpen.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 });
+
+const handleKeyUp = (e, popup) => {
+  if(e.key === 'Escape') {
+      closePopup(popup);
+  }
+}
 
 addPopupOpen.addEventListener('click', () => openPopup(addPopup));
 
@@ -101,7 +114,7 @@ function createCard (card) {
     bigImage.src = card.link;
     bigImage.alt = card.name;
     imageCaption.textContent = card.name;
-    bigImagePopup.classList.add('popup_open');
+    openPopup(bigImagePopup);
   })
 
   return cardElement;

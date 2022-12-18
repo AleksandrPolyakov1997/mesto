@@ -39,8 +39,24 @@
           Редактировать профиль
         </h2>
         <form class="popup__form popup__form_profile" name="edit-profile-form">
-          <input class="popup__input popup__input_form_name" type="text" name="name-profile-input" placeholder="Имя">
-          <input class="popup__input popup__input_form_job" type="text" name="job-profile-input" placeholder="О себе">
+          <input 
+                class="popup__input popup__input_form_name"
+                type="text"
+                name="name-profile-input"
+                minlength="2"
+                maxlength="40"
+                required
+                placeholder="Имя">
+          <span class="popup__error name-profile-input-error"></span>
+          <input 
+                class="popup__input popup__input_form_job" 
+                type="text" 
+                name="job-profile-input"
+                minlength="2"
+                maxlength="200"
+                required
+                placeholder="О себе">
+          <span class="popup__error job-profile-input-error"></span>
           <button class="popup__button-save" type="submit">
             Сохранить
           </button>
@@ -55,8 +71,21 @@
           Новое место
         </h2>
         <form class="popup__form popup__form_add" name="edit-card-form">
-          <input class="popup__input popup__input_form_title" type="text" name="title-card-input" placeholder="Название">
-          <input class="popup__input popup__input_form_image" type="text" name="image-card-input" placeholder="Ссылкка на картинку">
+          <input 
+                class="popup__input popup__input_form_title" 
+                type="text" 
+                name="title-card-input"
+                minlength="2"
+                maxlength="30"
+                required
+                placeholder="Название">
+          <span class="popup__error title-card-input-error"></span>
+          <input 
+                class="popup__input popup__input_form_image"
+                type="url" 
+                name="image-card-input" 
+                placeholder="Ссылкка на картинку">
+          <span class="popup__error image-card-input-error"></span>
           <button class="popup__button-save" type="submit">
             Сохранить
           </button>
@@ -85,6 +114,7 @@
   </div>
 </template>
 
+<script src="./scripts/validate.js"></script>
 <script src="./scripts/index.js"></script>
 
 </body>
