@@ -26,7 +26,7 @@ const openPopup = function (popup) {
   keyUpHandler = (e) => handleKeyUp(e, popup);
   document.addEventListener('keyup', keyUpHandler);
   popup.addEventListener('click', (e) => {
-    if(!e.target.closest('.popup__content')п) {
+    if(!e.target.closest('.popup__content')) {
       closePopup(e.target.closest('.popup'));
   }
   })
