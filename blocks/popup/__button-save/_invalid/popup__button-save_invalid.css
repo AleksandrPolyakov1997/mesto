@@ -5,3 +5,7 @@
   opacity: 0.2;
   cursor: default;
 }
+
+.popup__button-save_invalid:hover {
+  opacity: 0.2;
+}
