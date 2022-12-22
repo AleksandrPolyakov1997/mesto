@@ -7,7 +7,7 @@ const checkInputValidity = (input, form, config) => {
   }
 }
 
-const showInputError = (input, form) => {
+const showInputError = (input, form, config) => {
   const errorElement = form.querySelector(`.${input.name}-error`);
 
   errorElement.textContent = '';

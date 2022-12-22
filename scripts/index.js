@@ -28,10 +28,10 @@ function closeByEsc(evt) {
   }
 }
 
-const popupOverlayClose = (e) => {
-  e.addEventListener('click', (evt) => {
+const popupOverlayClose = (popup) => {
+  popup.addEventListener('click', (evt) => {
     if(!evt.target.closest('.popup__content')){
-      closePopup(e);
+      closePopup(popup);
     }
   })
 }
@@ -42,12 +42,12 @@ popupOverlayClose(popupBigImage);
 
 const openPopup = function (popup) {
   popup.classList.add('popup_open');
-  keyUpHandler = (e) => handleKeyUp(e, popup);
   document.addEventListener('keydown', closeByEsc);
 }
 
 const closePopup = function (popup) {
   popup.classList.remove('popup_open');
+  document.removeEventListener('keydown', closeByEsc);
 }
 
 buttonEditPopupOpen.addEventListener('click', () => {
