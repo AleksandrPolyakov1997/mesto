@@ -14,14 +14,14 @@ const showInputError = (input, form, config) => {
   input.classList.remove(config.inputErrorClass);
 };
 
-const hideInputError = (input, form) => {
+const hideInputError = (input, form, config) => {
   const errorElement = form.querySelector(`.${input.name}-error`);
   
   errorElement.textContent = input.validationMessage;
   input.classList.add(config.inputErrorClass);
 };
 
-const toggleButton = (inputs, button) => {
+const toggleButton = (inputs, button, config) => {
   const isFormValid = inputs.every(input => input.validity.valid);
 
   if(isFormValid) {
