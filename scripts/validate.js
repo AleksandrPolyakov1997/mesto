@@ -1,9 +1,9 @@
 const checkInputValidity = (input, form, config) => {
 
   if(input.validity.valid) {
-    showInputError(input, form);
+    showInputError(input, form, config);
   } else {
-    hideInputError(input, form);
+    hideInputError(input, form, config);
   }
 }
 
@@ -42,11 +42,11 @@ const enableValidation = (config) => {
       const inputs = [...form.querySelectorAll(inputSelector)];
       const button = form.querySelector(submitButtonSelector);
 
-      toggleButton(inputs, button);
+      toggleButton(inputs, button, config);
       inputs.forEach(input => {
           input.addEventListener('input', () => {
               checkInputValidity(input, form, restConfig);
-              toggleButton(inputs, button);
+              toggleButton(inputs, button, config);
           });
       })
   })
