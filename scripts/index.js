@@ -1,4 +1,5 @@
 import { Card } from './card.js';
+import { FormValidator } from './formValidator.js';
 
 const popupEdit = document.querySelector('.popup_edit-profile');
 const popupAdd = document.querySelector('.popup_new-card');
@@ -101,34 +102,24 @@ const initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-]; 
-// const cardTemplate = document.querySelector('#card').content.querySelector('.card');
+];
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button-save',
+  inactiveButtonClass: 'popup__button-save_invalid',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+};
+
+const validatorAddElement = new FormValidator(config, formAddElement);
+validatorAddElement.enableValidation();
+
+const validatorProfileElement = new FormValidator(config, formProfileElement);
+validatorProfileElement.enableValidation();
+
  const cardsElement = document.querySelector('.cards');
-
-// function createCard (card) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardTitle = cardElement.querySelector('.card__title');
-//   const cardImage = cardElement.querySelector('.card__image');
-
-//   cardTitle.textContent = card.name;
-//   cardImage.alt = card.name;
-//   cardImage.src = card.link;
-
-//   const deleteButton = cardElement.querySelector('.card__remove-button');
-//   deleteButton.addEventListener('click', handleDeleteCard);
-
-//   const likeButton = cardElement.querySelector('.card__like');
-//   likeButton.addEventListener('click', handleLikeCard);
-
-//   cardImage.addEventListener('click', () => {
-//     imageBig.src = card.link;
-//     imageBig.alt = card.name;
-//     imageCaption.textContent = card.name;
-//     openPopup(popupBigImage);
-//   })
-
-//   return cardElement;
-// }
 
 const handleSubmitAddCardForm = (event) => {
   event.preventDefault();
@@ -144,20 +135,7 @@ const renderCard = (card) => {
   cardsElement.prepend(createCard(card));
 };
 
-// const handleDeleteCard = (event) => {
-//   event.target.closest('.card').remove();
-// }
-
-// const handleLikeCard = (event) => {
-//   event.target.classList.toggle('card__like_checked');
-// }
-
 formAddElement.addEventListener("submit", handleSubmitAddCardForm);
-
-// initialCards.forEach(function(card){
-//   const element = createCard(card);
-//   cardsElement.append(element);
-// });
 
 const hendelClickCard = (title, image) => {
   imageBig.src = image;
