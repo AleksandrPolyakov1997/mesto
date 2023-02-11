@@ -1,13 +1,14 @@
 export class Card {
-  constructor(title, image, hendelClickCard){
+  constructor(title, image, temlateSelector, hendelClickCard){
     this._title = title;
     this._image = image;
     this._hendelClickCard = hendelClickCard;
+    this._templateSelector = temlateSelector;
   }
 
   _getTemplate() {
     const cardElement = document
-    .querySelector('#card')
+    .querySelector(this._templateSelector)
     .content
     .querySelector('.card')
     .cloneNode(true);
@@ -17,11 +18,13 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.card__image');
+    this._cardLike = this._element.querySelector('.card__like');
     this._setEventListeners();
 
     this._element.querySelector('.card__title').textContent = this._title;
-    this._element.querySelector('.card__image').src = this._image;
-    this._element.querySelector('.card__image').alt = this._title;
+    this._cardImage.src = this._image;
+    this._cardImage.alt = this._title;
 
     return this._element;
   }
@@ -31,11 +34,11 @@ export class Card {
       this._handleDeleteCard();
     });
 
-    this._element.querySelector('.card__like').addEventListener('click', () => {
+    this._cardLike.addEventListener('click', () => {
       this._handleLikeCard();
     });
 
-    this._element.querySelector('.card__image').addEventListener('click', () => {
+    this._cardImage.addEventListener('click', () => {
       this._hendelClickCard(this._title, this._image);
     });
   }
@@ -46,6 +49,6 @@ export class Card {
   }
 
   _handleLikeCard() {
-    this._element.querySelector('.card__like').classList.toggle('card__like_checked');
+    this._cardLike.classList.toggle('card__like_checked');
   }
 }

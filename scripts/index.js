@@ -1,5 +1,5 @@
-import { Card } from './card.js';
-import { FormValidator } from './formValidator.js';
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
 
 const popupEdit = document.querySelector('.popup_edit-profile');
 const popupAdd = document.querySelector('.popup_new-card');
@@ -31,17 +31,15 @@ function closeByEsc(evt) {
   }
 }
 
-const popupOverlayClose = (popup) => {
-  popup.addEventListener('click', (evt) => {
-    if(!evt.target.closest('.popup__content')){
-      closePopup(popup);
-    }
-  })
-}
+const popups = document.querySelectorAll('.popup')
 
-popupOverlayClose(popupEdit);
-popupOverlayClose(popupAdd);
-popupOverlayClose(popupBigImage);
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_open')) {
+            closePopup(popup)
+        }
+    })
+})
 
 const openPopup = function (popup) {
   popup.classList.add('popup_open');
@@ -126,8 +124,7 @@ const handleSubmitAddCardForm = (event) => {
   renderCard({ name: titleInput.value, link: imageInput.value })
   titleInput.value = '';
   imageInput.value = '';
-  event.submitter.classList.add('popup__button-save_invalid');
-  event.submitter.setAttribute("disabled", "disabled");
+  validatorAddElement.setInitialValues();
   closePopup(popupAdd);
 };
 
@@ -145,13 +142,12 @@ const hendelClickCard = (title, image) => {
 };
 
 function createCard(item) {
-  const card = new Card(item.name, item.link, hendelClickCard);
+  const card = new Card(item.name, item.link, '#card', hendelClickCard);
   const cardElement = card.generateCard();
 
   return cardElement;
 }
 
 initialCards.forEach((item) => {
-  createCard(item);
   cardsElement.append(createCard(item));
 });
