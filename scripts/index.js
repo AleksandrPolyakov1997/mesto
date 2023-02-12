@@ -124,7 +124,7 @@ const handleSubmitAddCardForm = (event) => {
   renderCard({ name: titleInput.value, link: imageInput.value })
   titleInput.value = '';
   imageInput.value = '';
-  validatorAddElement.setInitialValues();
+  validatorAddElement.disableButton();
   closePopup(popupAdd);
 };
 
