@@ -5,18 +5,17 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 
 <body class="page">
   <div class="page__content">
     <header class="header">
-      <img class="header__logo" src="./images/logo/logo.svg" alt="логотип">
+      <img class="header__logo" src="<%=require('./images/logo/logo.svg')%>" alt="логотип">
     </header>
     <main class="content">
       <section class="profile">
-        <img src="./images/profile/avatar.jpg" alt="аватар" class="profile__avatar">
+        <img src="<%=require('./images/profile/avatar.jpg')%>" alt="аватар" class="profile__avatar">
         <div class="profile__info">
           <h1 class="profile__title">Жак-Ив Кусто</h1>
           <button class="profile__edit-button" type="button"></button>
@@ -42,21 +41,21 @@
           <input 
                 class="popup__input popup__input_form_name"
                 type="text"
-                name="name-profile-input"
+                name="name"
                 minlength="2"
                 maxlength="40"
                 required
                 placeholder="Имя">
-          <span class="popup__error name-profile-input-error"></span>
+          <span class="popup__error name-error"></span>
           <input 
                 class="popup__input popup__input_form_job" 
                 type="text" 
-                name="job-profile-input"
+                name="job"
                 minlength="2"
                 maxlength="200"
                 required
                 placeholder="О себе">
-          <span class="popup__error job-profile-input-error"></span>
+          <span class="popup__error job-error"></span>
           <button class="popup__button-save" type="submit">
             Сохранить
           </button>
@@ -74,19 +73,19 @@
           <input 
                 class="popup__input popup__input_form_title" 
                 type="text" 
-                name="title-card-input"
+                name="name"
                 minlength="2"
                 maxlength="30"
                 required
                 placeholder="Название">
-          <span class="popup__error title-card-input-error"></span>
+          <span class="popup__error name-error"></span>
           <input 
                 class="popup__input popup__input_form_image"
                 type="url" 
-                name="image-card-input" 
+                name="link" 
                 placeholder="Ссылкка на картинку"
                 required>
-          <span class="popup__error image-card-input-error"></span>
+          <span class="popup__error link-error"></span>
           <button class="popup__button-save popup__button-save_invalid" type="submit" disabled>
             Сохранить
           </button>
@@ -114,10 +113,6 @@
     </div>
   </div>
 </template>
-
-<script type="module" src="./scripts/card.js"></script>
-<script type="module" src="./scripts/formValidator.js"></script>
-<script type="module" src="./scripts/index.js"></script>
 
 </body>
 
