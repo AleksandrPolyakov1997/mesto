@@ -6,12 +6,18 @@ export default class Api {
     this._headers = options.headers;
   }
 
+  _getResponseData(res) {
+    if (!res.ok) {
+        return Promise.reject(`Ошибка: ${res.status}`); 
+    }
+    return res.json();
+}
+
   getInfoUser() {
     return fetch(this._baseUrl + '/users/me', {
       headers: this._headers
     })
-      .then(res => res.ok ? res.json() : Promise.reject())
-      .catch(err => console.log(`Ошибка: ${err} ${res.status}`));
+    .then(res => this._getResponseData(res));
   }
 
   editUser(data) {
@@ -23,16 +29,14 @@ export default class Api {
         about: data.job
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject())
-      .catch(err => console.log(`Ошибка: ${err} ${res.status}`));
+    .then(res => this._getResponseData(res));
   }
 
   getCards() {
     return fetch(this._baseUrl + '/cards', {
       headers: this._headers
     })
-      .then(res => res.ok ? res.json() : Promise.reject())
-      .catch(err => console.log(`Ошибка: ${err} ${res.status}`));
+    .then(res => this._getResponseData(res));
   }
 
   addNewCard(data) {
@@ -44,8 +48,7 @@ export default class Api {
         link: data.link
       })
     })
-      .then(res => res.ok ? res.json() : Promise.reject())
-      .catch(err => console.log(`Ошибка: ${err} ${res.status}`));
+    .then(res => this._getResponseData(res));
   }
 
   deleteCard(cardId) {
@@ -53,8 +56,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers
     })
-      .then(res => res.ok ? res.json() : Promise.reject())
-      .catch(err => console.log(`Ошибка: ${err} ${res.status}`));
+    .then(res => this._getResponseData(res));
   }
 
   addLike(cardId) {
@@ -62,8 +64,7 @@ export default class Api {
       method: 'PUT',
       headers: this._headers
     })
-      .then(res => res.ok ? res.json() : Promise.reject())
-      .catch(err => console.log(`Ошибка: ${err} ${res.status}`));
+    .then(res => this._getResponseData(res));
   }
 
   deleteLike(cardId) {
@@ -71,8 +72,7 @@ export default class Api {
       method: "DELETE",
       headers: this._headers
     })
-      .then(res => res.ok ? res.json() : Promise.reject())
-      .catch(err => console.log(`Ошибка: ${err} ${res.status}`));
+    .then(res => this._getResponseData(res));
   }
 
   editAvatar(link) {
@@ -82,8 +82,8 @@ export default class Api {
       body: JSON.stringify({
         avatar: link.avatar
       })
-    }
-    )
+    })
+    .then(res => this._getResponseData(res));
   }
 }
 
