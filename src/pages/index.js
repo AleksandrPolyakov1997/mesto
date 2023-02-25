@@ -51,10 +51,10 @@ const handleFormProfileSubmit = (formValues) => {
   editProfileForm.setButtonText('Сохранение...');
   api.editUser(formValues)
     .then((data) => { userInfo.setUserInfo(data) })
+    .then(() => editProfileForm.close())
     .catch((err) => console.log(`Ошибка ${err}`))
     .finally(() => {
       editProfileForm.setButtonText('Сохранить');
-      editProfileForm.close();
     });
 }
 
@@ -73,12 +73,12 @@ const editProfileForm = new PopupWithForm('.popup_edit-profile', handleFormProfi
 const handleFormAvatarSubmit = (formValues) => {
   editAvatarForm.setButtonText('Сохранение...');
   api.editAvatar(formValues)
-    .then(res => { userInfo.setUserInfo(res); })
+    .then(res => { userInfo.setUserInfo(res)})
+    .then(() => editAvatarForm.close())
     .catch((err) => console.log(`Ошибка ${err}`))
     .finally(() => {
       editAvatarForm.setButtonText('Сохранить');
       validatorAvatarElement.disableButton();
-      editAvatarForm.close();
     });
 };
 
@@ -86,28 +86,33 @@ const handleSubmitAddCardForm = (formValues) => {
   addCardForm.setButtonText('Сохранение...');
   api.addNewCard(formValues)
     .then(res => {cardsList.addItemPrepend(createCard(res))})
+    .then(() => addCardForm.close())
       .catch((err) => console.log(`Ошибка ${err}`))
       .finally(() => {
         addCardForm.setButtonText('Сохранить');
-        addCardForm.close();
       });
 };
 
 
 const editAvatarForm = new PopupWithForm('.popup_edit-avatar', handleFormAvatarSubmit);
 editAvatarForm.setEventListeners();
-buttonEditAvatarPopupOpen.addEventListener('click', () => {
+
+const hendleAvatarPopupOpen = () => {
   editAvatarForm.open();
   validatorAvatarElement.resetValidation();
   validatorAvatarElement.disableButton();
-});
+}
 
-buttonEditPopupOpen.addEventListener('click', () => {
+buttonEditAvatarPopupOpen.addEventListener('click', hendleAvatarPopupOpen);
+
+const hendleEditPopupOpen = () => {
   editProfileForm.open();
   validatorProfileElement.resetValidation();
   validatorProfileElement.disableButton();
   editProfileForm.setInputValues(userInfo.getUserInfo());
-});
+}
+
+buttonEditPopupOpen.addEventListener('click', hendleEditPopupOpen);
 editProfileForm.setEventListeners();
 
 const hendelClickCard = (title, image) => {
@@ -170,10 +175,12 @@ deleteCardPopup.setEventListeners();
 
 const addCardForm = new PopupWithForm('.popup_new-card', handleSubmitAddCardForm);
 
-buttonAddPopupOpen.addEventListener('click', () => {
+const hendleAddPopupOpen = () => {
   addCardForm.open();
   validatorAddElement.disableButton();
   validatorAddElement.resetValidation();
-});
+}
+
+buttonAddPopupOpen.addEventListener('click', hendleAddPopupOpen);
 addCardForm.setEventListeners();
 
